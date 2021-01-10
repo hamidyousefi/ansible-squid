@@ -1,0 +1,40 @@
+---
+- name: install necessary packages
+  apt:
+    force_apt_get: yes
+    update_cache: yes
+    package:
+      - squid3
+      - apache2-utils
+      - python3-passlib
+
+- name: configure squid service
+  template:
+    src: squid.conf.j2
+    dest: /etc/squid/squid.conf
+    owner: root
+    group: root
+    mode: '0644'
+  notify:
+    - restart squid
+
+- name: add accounts to squid authentication config file
+  htpasswd:
+    path: /etc/squid/accounts.conf
+    name: "{{ item.username }}"
+    password: "{{ item.password }}"
+    owner: root
+    group: root
+    mode: '0644'
+  with_items: "{{ squid.accounts }}"
+  notify:
+    - restart squid
+
+- name: enable ip forwarding
+  sysctl:
+    name: net.ipv4.ip_forward
+    value: '1'
+    state: present
+    sysctl_set: yes
+    reload: yes
+    sysctl_file: /etc/sysctl.conf

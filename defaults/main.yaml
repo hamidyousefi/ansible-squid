@@ -1,0 +1,6 @@
+---
+squid:
+  port: 8123
+  accounts:
+    - username: username
+      password: 123456
