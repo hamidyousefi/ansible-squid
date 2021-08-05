@@ -12,6 +12,7 @@ http_access allow authorities
 via off
 forwarded_for off
 
+request_header_access User-Agent deny all
 request_header_access From deny all
 request_header_access Server deny all
 request_header_access WWW-Authenticate deny all

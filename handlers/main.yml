@@ -1,0 +1,12 @@
+---
+- name: enable and start squid
+  systemd:
+    name: squid
+    daemon_reload: yes
+    enabled: yes
+    state: started
+
+- name: restart squid
+  systemd:
+    name: squid
+    state: restarted

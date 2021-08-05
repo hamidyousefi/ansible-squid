@@ -1,0 +1,23 @@
+---
+galaxy_info:
+  role_name: squid
+  author: Hamid Yousefi
+  description: Caching Proxy for the Web
+  license: GPL-2.0-or-later
+  min_ansible_version: 2.8
+  platforms:
+    - name: Debian
+      versions:
+        - stretch
+        - buster
+    - name: Ubuntu
+      versions:
+        - xenial
+        - bionic
+        - focal
+  galaxy_tags:
+    - linux
+    - squid
+    - proxy
+    - cache
+    - system

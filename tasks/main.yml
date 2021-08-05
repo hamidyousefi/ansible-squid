@@ -1,4 +1,12 @@
 ---
+- name: create necessary directories
+  file:
+    path: /etc/iptables
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+
 - name: install necessary packages
   apt:
     force_apt_get: yes
@@ -16,7 +24,7 @@
     group: root
     mode: '0644'
   notify:
-    - restart squid
+    - enable and start squid
 
 - name: add accounts to squid authentication config file
   htpasswd:
